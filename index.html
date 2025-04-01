@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rice Boiling Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input, button {
+      font-size: 16px;
+      padding: 8px;
+      margin-top: 10px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rice Boiling Calculator</h1>
+  <p>Enter the weight of the rice (in grams):</p>
+  <input type="number" id="riceWeight" placeholder="e.g. 200">
+  <br>
+  <button onclick="calculate()">Calculate</button>
+  <div class="result" id="result"></div>
+
+  <script>
+    function calculate() {
+      // Get the rice weight from the input
+      var rice = parseFloat(document.getElementById("riceWeight").value);
+      if(isNaN(rice) || rice <= 0) {
+        alert("Please enter a valid positive number for rice weight.");
+        return;
+      }
+      
+      // Set the water-to-rice ratio; adjust this value as needed.
+      var waterRatio = 1.5;
+      var water = rice * waterRatio;
+      var ricePlusWater = rice + water;
+      
+      // Fixed container weight (in grams)
+      var container = 591;
+      var totalWeight = ricePlusWater + container;
+      
+      // Display the results
+      var resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "<p><strong>Water weight to add:</strong> " + water.toFixed(2) + " grams</p>" +
+                            "<p><strong>Rice + Water weight:</strong> " + ricePlusWater.toFixed(2) + " grams</p>" +
+                            "<p><strong>Total weight (including container):</strong> " + totalWeight.toFixed(2) + " grams</p>";
+    }
+  </script>
+</body>
+</html>
+
